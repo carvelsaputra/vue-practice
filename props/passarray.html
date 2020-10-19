@@ -1,0 +1,31 @@
+<html>
+    <head>
+        <title>Belajar Vue</title>
+    </head>
+    <body>
+        <div id="app-1">
+            <!-- static -->
+            <blog-post v-bind:commend-ids="[1, 2, 59]"></blog-post>
+            <!-- dynamic -->
+            <blog-post v-bind:commend-ids="post.commendIds"></blog-post>
+        </div>
+        
+    </body>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+      Vue.component('blog-post',{
+          props:['commendIds'],
+          template:'<h3>{{commendIds}}</h3>'
+      })
+      var app = new Vue({
+          el:'#app-1',
+          data:
+          {
+            post:
+            {
+                commendIds: '[5, 8, 6]'
+            }
+          }
+      })
+    </script>
+</html>

@@ -1,0 +1,23 @@
+<html>
+    <head>
+        <title>Belajar Vue</title>
+    </head>
+    <body>
+    <div id="app-1">
+        <blog-post post-title="hello!"></blog-post>
+    </div>
+        
+    </body>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+   Vue.component('blog-post', {
+  // camelCase in JavaScript
+  props: ['postTitle'],
+  template: '<h3>{{ postTitle }}</h3>'
+})
+var app = new Vue({
+    el:'#app-1'
+})
+    </script>
+
+</html>

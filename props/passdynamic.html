@@ -1,0 +1,35 @@
+<html>
+    <head>
+        <title>Belajar Vue</title>
+    </head>
+    <body>
+    <div id="app-1">
+        <!-- statis -->
+        <blog-post title="My journey with Vue"></blog-post>
+        <!-- dynamic -->
+        <blog-post v-bind:title="post.title + ' by '+ post.author.name "></blog-post>
+    </div>
+        
+    </body>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+    Vue.component('blog-post', {
+    props:['title','author'],
+    template:
+            '<h3>{{title}}</h3>'
+    
+    })
+    var app = new Vue
+    ({
+        el:'#app-1',
+        data:{
+            post:{
+                title:'tes',
+                author:{
+                    name:'bla'
+                }
+            }
+    }
+    })
+    </script>
+</html>

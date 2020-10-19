@@ -1,0 +1,53 @@
+<html>
+    <head>
+        <title>if</title>
+
+        <!-- --bind -->
+        <!-- full syntax
+        <a v-bind:href="url"> ... </a>
+        shorthand
+        <a :href="url"> ... </a> -->
+
+        <!-- --v-on -->
+        <!-- full syntax -->
+        <!-- <!-- <a v-on:click="doSomething"> ... </a> -->
+        <!-- shorthand
+        <a @click="doSomething"> ... </a> -->
+        <body>
+            <!-- <div id="tes">
+                <template v-if="loginType === 'username'">
+                    <label>Username</label>
+                    <input placeholder="Enter your username" key="username-input">
+                  </template>
+                  <template v-else>
+                    <label>Email</label>
+                    <input placeholder="Enter your email address" key="email-input">
+                  </template>
+                  <button @click="loginType='email'">toggle tombol</button>
+            </div> -->
+            <div id="tes1">
+              <template v-if="loginType === 'username'">
+                  <label>Username</label>
+                  <input placeholder="Enter your username" key="username-input" v-model="username">
+                  {{username}}
+                </template>
+                <template v-else>
+                  <label>Email</label>
+                  <input placeholder="Enter your email address" key="email-input" v-model="username">
+                  {{email}}
+
+                </template>
+                <button @click='toggle()'>toggle tombol</button>
+                
+          </div>
+            <div v-if="Math.random() > 0.5">
+                Now you see me
+              </div>
+              <div v-else>
+                Now you don't
+              </div>
+        </body>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script src="index.js"></script>
+    </head>
+</html>

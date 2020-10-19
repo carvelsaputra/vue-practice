@@ -1,0 +1,84 @@
+<html>
+    <head>
+        <title>Form input binding</title>
+    </head>
+    <body>
+        <div id="pesan-1">
+            <input v-model="pesan" placeholder="edit saya">
+            <p>Pesan nya adalah : {{ pesan }}</p>
+        </div>
+        <div id="pesan-2">
+            <span>Pesan dari Multiline adalah : </span>
+            <p style="white-space: pre-line;">{{multiline}}</p>
+            <br>
+            <textarea v-model="multiline" placeholder="Tuliskan Pesan Anda"></textarea>
+        </div>
+        <div id="pesan-3">
+            <input type="checkbox" id="checkbox" v-model="checked">
+            <label for="checkbox">{{ checked }}</label>
+        </div>
+        <div id="pesan-4">
+            <input type="checkbox" id="aziz" value="Aziz" v-model="centang">
+            <label for="aziz">Aziz</label>
+            <input type="checkbox" value="Apek" id="apek" v-model="centang">
+            <label for="apek">Apek</label>
+            <input type="checkbox" value="Joseph" id="joseph" v-model="centang">
+            <label for="joseph">Joseph</label>
+            <br>
+            <span>Nama yang di centang : {{centang}}</span>
+        </div>
+        <div id="pesan-5">
+            <select v-model="selected">
+                <option v-for="option in options" v-bind:value="option.value">
+                  {{ option.text }}
+                </option>
+              </select>
+              <span>Yang dipilih : {{ selected }}</span>
+        </div>
+    </body>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+   <script>
+   var app = new Vue({
+    el :'#pesan-1',
+    data:
+    {
+        pesan:''
+    }
+   })
+   var app2 = new Vue({
+       el:'#pesan-2',
+       data:{
+           multiline:''
+       }
+   })
+   var app3 = new Vue({
+       el:'#pesan-3',
+       data:{
+           checked:false
+       }
+   })
+   var app4 = new Vue({
+       el:'#pesan-4',
+       data:{
+           centang:[]
+       }
+   })
+   var app5 = new Vue({
+       el:'#pesan-5',
+       data:{
+           selected:'A',
+           options:[
+               {
+                   text:'satu', value:'A'
+               },
+               {
+                   text:'dua',value:'B'
+               },
+               {
+                   text:'tiga',value:'C'
+               }
+           ]
+       }
+   })
+   </script>
+</html>

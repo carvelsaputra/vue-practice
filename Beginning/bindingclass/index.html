@@ -1,0 +1,21 @@
+<html>
+    <head>
+        <title>Class and BINDING</title>
+        <body>
+            <div class="static"
+            v-bind:class="classObject"
+            id="static-class"> 
+haloooo
+            </div>
+
+            <div v-if="Math.random() > 0.5">
+                Now you see me
+              </div>
+              <div v-else>
+                Now you don't
+              </div>
+        </body>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script src="index.js"></script>
+    </head>
+</html>

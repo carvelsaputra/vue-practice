@@ -1,0 +1,47 @@
+<html>
+    <head>
+        <title>Belajar Vue</title>
+    </head>
+    <body>
+        <div id='app-1'>
+            <base-input
+            v-model="label"
+            required
+            placeholder="Enter your username"
+            ></base-input>
+        </div>
+        
+    </body>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+    Vue.component('base-input',{
+        inheritAttrs:false,
+        props:['label','input'],
+        template:
+        `
+            <label>
+                {{label}}
+                <input
+                v-bind="$attrs"
+                v-bind:value="value"
+                v-on:input="$emit('input',$event.target.value)"
+                >
+            </label>
+        `,
+        data:function()
+        {
+            return {
+                value:'tes'
+            }
+        }
+
+    })        
+    var app = new Vue({
+        el:'#app-1',
+        data:{
+            label:''
+        }
+    })
+    </script>
+
+</html>

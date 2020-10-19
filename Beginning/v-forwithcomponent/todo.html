@@ -1,0 +1,31 @@
+<html>
+    <head>
+        <title>for component</title>
+    </head>
+    <body>
+        <div id="todo-list-example">
+            <form v-on:submit.prevent="addNewTodo">
+                <label for="new-todo">Add a Todo</label>
+                <input 
+                v-model="newTodoText"
+                id="new-todo"
+                placeholder="contoh: Belajar"
+                >
+                <button>Tambah</button>
+            </form>
+            <ul>
+                <li
+                is="todo-item"
+                v-for="(todo,index) in todos"
+                v-bind:key="todo.id"
+                v-bind:title="todo.title"
+                v-on:remove="todos.splice(index,1)"
+                >
+                </li>
+                    
+            </ul>
+        </div>
+    </body>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="todo.js"></script>
+</html>
