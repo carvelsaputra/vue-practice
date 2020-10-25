@@ -1,33 +1,41 @@
 <template>
-    <div class="component">
-        <h3>You may view the User Details here</h3>
-        <p>Many Details</p>
-        <p>User Name : {{ switchName() }}</p>
-        <button @click="resetName">Reset Name</button>
-        <button @click="resetFn()">Reset Name using props</button>
-    </div>
+  <div class="component">
+    <h3>You may view the User Details here</h3>
+    <p>Many Details</p>
+    <p>User Name : {{ switchName() }}</p>
+    <p>User Age: {{ userAge }}</p>
+    <button @click="resetName">Reset Name</button>
+    <button @click="resetFn()">Reset Name using props</button>
+  </div>
 </template>
 
 <script>
+import { eventBus } from "../main";
 export default {
-    props:{
-        myName: String,
-        resetFn: Function
+  props: {
+    myName: String,
+    resetFn: Function,
+    userAge: Number,
+  },
+  methods: {
+    switchName() {
+      return this.myName.split("").reverse().join("");
     },
-    methods:{
-        switchName(){
-            return this.myName.split("").reverse().join("");
-        },
-        resetName(){
-            this.myName = 'Carvel';
-            this.$emit('nameWasReset',this.myName);
-        }
-    }
-}
+    resetName() {
+      this.myName = "Carvel";
+      this.$emit("nameWasReset", this.myName);
+    },
+  },
+  created() {
+    eventBus.$on('ageWasEditted', (age) => {
+        this.userAge = age;
+    });
+  },
+};
 </script>
 
 <style scoped>
-    div {
-        background-color: lightcoral;
-    }
+div {
+  background-color: lightcoral;
+}
 </style>
