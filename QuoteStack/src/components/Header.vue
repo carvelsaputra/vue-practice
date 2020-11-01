@@ -10,7 +10,7 @@
             aria-valuenow="60"
             aria-valuemin="0"
             aria-valuemax="100"
-            :style="{ width: (quoteCount / MaxQuotes) * 100 + '%' }"
+            :style="{ width: (quoteCount / maxQuotes) * 100 + '%' }"
           >
             {{ quoteCount }} / {{ maxQuotes }}
           </div>
@@ -21,6 +21,7 @@
 </template>
 <script>
 export default {
-  props: ["quoteCount", "maxQuotes"],
+  props: ['quoteCount', 'maxQuotes'],
 };
 </script>
+

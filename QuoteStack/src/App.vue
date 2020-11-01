@@ -34,6 +34,9 @@ export default {
   },
   methods: {
     newQuote(quote) {
+      if(this.quotes.length >= this.maxQuotes){
+        return alert('Tolong hapus quote terlebih dahulu')
+      }
       this.quotes.push(quote);
     },
     deleteQuote(index) {
