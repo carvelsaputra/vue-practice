@@ -9,13 +9,19 @@
         <ul>
             <li v-for="fruit in filteredFruits" >{{fruit}}</li>
         </ul>
+        <hr>
+        <app-list></app-list>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import List from "./List.vue"
 export default {
+  components:{
+    'appList' : List
+  },
   data() {
     return {
       text: "Hello World ",
