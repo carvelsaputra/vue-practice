@@ -6,7 +6,7 @@ Vue.filter('to-lowercase',(value)=>{
 })
 Vue.mixin({
   created(){
-    console.log('global mixin')
+    console.log('global mixin - created Hook')
   }
 })
 new Vue({
