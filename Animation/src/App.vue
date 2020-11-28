@@ -23,6 +23,10 @@
         <transition name="slide" type="animation" appear>
           <div class="alert alert-info" v-if="show">This is Some Info</div>
         </transition>
+        <transition :name="alertAnimation" mode="out-in">
+          <div class="alert alert-info" v-if="show" key="info">This is Some Info</div>
+          <div class="alert alert-warning" v-else key="warning">This is Some Warning</div>
+        </transition>
         <!-- <transition 
                     enter-class=""
                     enter-active-class="animated bounce"
