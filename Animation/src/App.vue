@@ -70,6 +70,21 @@
             v-if="load"
           ></div>
         </transition>
+        <hr />
+        <button
+          class="btn btn-primary"
+          @click="
+            selectedComponent == 'app-success-alert'
+              ? (selectedComponent = 'app-danger-alert')
+              : (selectedComponent = 'app-success-alert')
+          "
+        >
+          Toggle Components
+        </button>
+        <br /><br />
+        <transition name="fade" mode="out-in">
+          <component :is="selectedComponent"></component>
+        </transition>
       </div>
     </div>
   </div>
@@ -77,13 +92,20 @@
 
 <script>
 // only can animate 1 element with transision
+import DangerAlert from "./DangerAlert.vue";
+import SuccessAlert from "./SuccessAlert.vue";
 export default {
+  components: {
+    appDangerAlert: DangerAlert,
+    appSuccessAlert: SuccessAlert,
+  },
   data() {
     return {
       show: false,
       load: true,
       alertAnimation: "fade",
       elementWidth: 100,
+      selectedComponent: "app-success-alert",
     };
   },
   methods: {
@@ -96,7 +118,7 @@ export default {
       console.log("enter");
       let round = 1;
       const interval = setInterval(() => {
-        el.style.width = (this.elementWidth + round * 10 )+ "px";
+        el.style.width = this.elementWidth + round * 10 + "px";
         round++;
         if (round > 20) {
           clearInterval(interval);
@@ -112,14 +134,14 @@ export default {
     },
     beforeLeave(el) {
       console.log("before Leave");
-      this.elementWidth = 300
+      this.elementWidth = 300;
       el.style.width = this.elementWidth + "px";
     },
     leave(el, done) {
       console.log("leave");
       let round = 1;
       const interval = setInterval(() => {
-        el.style.width = (this.elementWidth - round * 10) + 'px';
+        el.style.width = this.elementWidth - round * 10 + "px";
         round++;
         if (round > 20) {
           clearInterval(interval);
