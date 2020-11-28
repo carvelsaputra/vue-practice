@@ -24,8 +24,12 @@
           <div class="alert alert-info" v-if="show">This is Some Info</div>
         </transition>
         <transition :name="alertAnimation" mode="out-in">
-          <div class="alert alert-info" v-if="show" key="info">This is Some Info</div>
-          <div class="alert alert-warning" v-else key="warning">This is Some Warning</div>
+          <div class="alert alert-info" v-if="show" key="info">
+            This is Some Info
+          </div>
+          <div class="alert alert-warning" v-else key="warning">
+            This is Some Warning
+          </div>
         </transition>
         <!-- <transition 
                     enter-class=""
@@ -44,6 +48,28 @@
         > -->
         <!-- <div class="alert alert-info" v-if="show">This is Some Info</div>
         </transition> -->
+        <hr />
+        <button class="btn btn-primary" @click="load = !load">
+          Load / remove Element
+        </button>
+        <br />
+        <br />
+        <transition
+          @before-enter="beforeEnter"
+          @enter="enter"
+          @after-enter="afterEnter"
+          @enter-cancelled="enterCancelled"
+
+          @before-leave="beforeLeave"
+          @leave="leave"
+          @after-leave="afterLeave"
+          @leave-cancelled="leaveCancelled"
+        >
+          <div
+            style="width: 100px; height: 100px; background-color: lightgreen"
+            v-if="load"
+          ></div>
+        </transition>
       </div>
     </div>
   </div>
@@ -55,9 +81,38 @@ export default {
   data() {
     return {
       show: false,
+      load: true,
       alertAnimation: "fade",
     };
   },
+  methods:{
+    beforeEnter: (el) => {
+      console.log('Before Enter');
+    },
+    enter:(el,done)=>{
+      console.log('enter')
+      done();
+    },
+    afterEnter:(el)=>{
+      console.log('after Enter');
+    },
+    enterCancelled: (el)=>{
+      console.log('enter Cancelled');
+    },
+    beforeLeave: (el)=>{
+      console.log('before Leave');
+    },
+    leave: (el, done)=>{
+      console.log('leave');
+      done();
+    },
+    afterLeave:(el)=>{
+      console.log('after Leave');
+    },
+    leaveCancelled:(el)=>{
+      console.log('leave Cancelled');
+    }
+  }
 };
 </script>
 
