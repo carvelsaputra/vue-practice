@@ -59,11 +59,11 @@
           @enter="enter"
           @after-enter="afterEnter"
           @enter-cancelled="enterCancelled"
-
           @before-leave="beforeLeave"
           @leave="leave"
           @after-leave="afterLeave"
           @leave-cancelled="leaveCancelled"
+          :css="false"
         >
           <div
             style="width: 100px; height: 100px; background-color: lightgreen"
@@ -83,36 +83,57 @@ export default {
       show: false,
       load: true,
       alertAnimation: "fade",
+      elementWidth: 100,
     };
   },
-  methods:{
-    beforeEnter: (el) => {
-      console.log('Before Enter');
+  methods: {
+    beforeEnter(el) {
+      console.log("Before Enter");
+      this.elementWidth = 100;
+      el.style.width = this.elementWidth + "px";
     },
-    enter:(el,done)=>{
-      console.log('enter')
-      done();
+    enter(el, done) {
+      console.log("enter");
+      let round = 1;
+      const interval = setInterval(() => {
+        el.style.width = (this.elementWidth + round * 10 )+ "px";
+        round++;
+        if (round > 20) {
+          clearInterval(interval);
+          done();
+        }
+      }, 20);
     },
-    afterEnter:(el)=>{
-      console.log('after Enter');
+    afterEnter(el) {
+      console.log("after Enter");
     },
-    enterCancelled: (el)=>{
-      console.log('enter Cancelled');
+    enterCancelled(el) {
+      console.log("enter Cancelled");
     },
-    beforeLeave: (el)=>{
-      console.log('before Leave');
+    beforeLeave(el) {
+      console.log("before Leave");
+      this.elementWidth = 300
+      el.style.width = this.elementWidth + "px";
     },
-    leave: (el, done)=>{
-      console.log('leave');
-      done();
+    leave(el, done) {
+      console.log("leave");
+      let round = 1;
+      const interval = setInterval(() => {
+        el.style.width = (this.elementWidth - round * 10) + 'px';
+        round++;
+        if (round > 20) {
+          clearInterval(interval);
+          done();
+        }
+      }, 20);
     },
-    afterLeave:(el)=>{
-      console.log('after Leave');
+    afterLeave(el) {
+      console.log("after Leave");
     },
-    leaveCancelled:(el)=>{
-      console.log('leave Cancelled');
-    }
-  }
+    leaveCancelled(el) {
+      console.log("leave Cancelled");
+    },
+  },
 };
 </script>
 
