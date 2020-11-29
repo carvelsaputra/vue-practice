@@ -87,17 +87,20 @@
         </transition>
         <hr />
         <button class="btn btn-primary" @click="addItem">Add Item</button>
-        <br>
-        <br>
+        <br />
+        <br />
         <ul class="list-group">
-          <li
-            class="list-group-item"
-            v-for="(number, index) in numbers"
-            style="cursor: pointer"
-            @click="removeItem(index)"
-          >
-            {{ number }}
-          </li>
+          <transition-group name="slide">
+            <li
+              class="list-group-item"
+              v-for="(number, index) in numbers"
+              :key="number"
+              style="cursor: pointer"
+              @click="removeItem(index)"
+            >
+              {{ number }}
+            </li>
+          </transition-group>
         </ul>
       </div>
     </div>
@@ -170,15 +173,15 @@ export default {
     leaveCancelled(el) {
       console.log("leave Cancelled");
     },
-    addItem(){
+    addItem() {
       const position = Math.floor(Math.random() * this.numbers.length);
-      this.numbers.splice(position, 0, this.numbers.length +1)
+      this.numbers.splice(position, 0, this.numbers.length + 1);
     },
-    removeItem(index){
+    removeItem(index) {
       // array.splice(index, howmany, item1, ....., itemX)
       // The splice() method adds/removes items to/from an array, and returns the removed item(s).
-      this.numbers.splice(index,1)
-    }
+      this.numbers.splice(index, 1);
+    },
   },
 };
 </script>
@@ -204,15 +207,20 @@ export default {
   opacity: 0;
 }
 .slide-enter-active {
-  transition: opacity 0.5s;
   animation: slide-in 1s ease-out forwards;
+  transition: opacity 0.5s;
 }
 .slide-leave {
 }
 .slide-leave-active {
-  transition: opacity 1s;
   animation: slide-out 1s ease-out forwards;
+  transition: opacity 1s;
   opacity: 0;
+  position: absolute;
+}
+.slide-move{
+  /* attach to any element who change the place */
+  transition: transform 1s;
 }
 @keyframes slide-in {
   from {
