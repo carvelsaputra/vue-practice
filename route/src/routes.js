@@ -18,11 +18,11 @@ export const routes = [
                 component: UserStart
             },
             {
-                path:'/:id',
+                path:':id',
                 component:UserDetail
             },
             {
-                path:'/:id/edit',
+                path:':id/edit',
                 component: UserEdit
             }
         ]
