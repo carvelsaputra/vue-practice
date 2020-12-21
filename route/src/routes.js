@@ -7,12 +7,14 @@ import UserEdit from "./components/user/UserEdit.vue"
 export const routes = [
     {
         path: '/',
-        component: Home
+        component: Home,
+        name:'home'
     },
     {
         path: '/user', 
         component: User,
-        children:[
+        children:
+        [
             {
                 path: '/',
                 component: UserStart
@@ -23,6 +25,7 @@ export const routes = [
             },
             {
                 path:':id/edit',
+                name:'userEdit',
                 component: UserEdit
             }
         ]
