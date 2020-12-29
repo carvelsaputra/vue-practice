@@ -19,6 +19,11 @@ const router = new VueRouter({
     return { x: 0, y: 0 };
   },
 });
+//execute it before each routing action / before action routing occured
+router.beforeEach((to, from, next) => {
+  console.log('Global beforeEach');
+  next();
+});
 
 new Vue({
   el: "#app",
