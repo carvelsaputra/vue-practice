@@ -1,22 +1,39 @@
 <template>
-    <div>
-        <button class="btn btn-primary" @click="increment">Increment</button>
-        <button class="btn btn-primary" @click="decrement">Decrement</button>
-    </div>
+  <div>
+    <button class="btn btn-primary" @click="increment(100)">Increment</button>
+    <button class="btn btn-primary" @click="decrement(50)">Decrement</button>
+  </div>
 </template>
 
 <script>
-    export default {
-        methods: {
-            increment() {
-                // this.$store.state.counter++;
-                this.$store.commit('increment');
+import { mapMutations } from "vuex";
+import { mapActions } from "vuex";
 
-            },
-            decrement() {
-                // this.$store.state.counter--;
-                this.$store.commit('decrement');
-            }
-        }
-    }
+export default {
+  methods: {
+    //   ...mapMutations([
+    //       'increment',
+    //       'decrement'
+    //   ]),
+
+    ...mapActions(["increment", "decrement"]),
+
+    increment(by) {
+      this.$store.dispatch("increment", by);
+    },
+
+     decrement(by) {
+      this.$store.dispatch("decrement", by);
+    },
+
+    // increment() {
+    //   // this.$store.state.counter++;
+    //   this.$store.commit("increment");
+    // },
+    // decrement() {
+    //   // this.$store.state.counter--;
+    //   this.$store.commit("decrement");
+    // },
+  },
+};
 </script>
