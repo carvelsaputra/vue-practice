@@ -8,6 +8,9 @@
         <hr />
         <app-counter></app-counter>
         <app-another-counter></app-another-counter>
+        <hr />
+        <input type="text" :value="value" @input="updateValue" />
+        <p>Value : {{ value }}</p>
       </div>
     </div>
   </div>
@@ -17,13 +20,28 @@
 import Counter from "./components/Counter.vue";
 import Result from "./components/Result.vue";
 import AnotherResult from "./components/AnotherResult.vue";
-import AnotherCounter from "./components/AnotherCounter.vue"
+import AnotherCounter from "./components/AnotherCounter.vue";
 export default {
   components: {
     appCounter: Counter,
     appResult: Result,
     appAnotherResult: AnotherResult,
-    appAnotherCounter: AnotherCounter
+    appAnotherCounter: AnotherCounter,
   },
+  computed: {
+    value: {
+      get(){
+        return this.$store.getters.value;
+      },
+      set(value){
+        this.$store.dispatch('updateValue',value);
+      }
+    },
+  },
+  methods:{
+    updateValue(event){
+      this.$store.dispatch('updateValue', event.target.value)
+    }
+  }
 };
 </script>
